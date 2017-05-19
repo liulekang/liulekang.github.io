@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          iueKang的博客
+          解析xml文件 - iueKang的博客
         
     </title>
 
-    <link rel="canonical" href="https://github.com/liulekang/liulekang.github.io.git/archives/">
+    <link rel="canonical" href="https://github.com/liulekang/liulekang.github.io.git/2017/05/19/xml/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,8 +69,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/undefined')
-            /*page*/
+            background-image: url('undefined')
+            /*post*/
         
     }
     
@@ -87,10 +87,18 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h1>iueKang的博客</h1>
-                        <!--<hr class="small">-->
-                        <span class="subheading">记录学习过程</span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#xml解析" title="xml解析">xml解析</a>
+                            
+                        </div>
+                        <h1>解析xml文件</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by iueKang on
+                            2017-05-19
+                        </span>
                     </div>
                 
 
@@ -193,181 +201,132 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 归档列表 -->
-            
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-             <!-- 归档列表 -->
+                <blockquote>
+<p> 这篇文章主要记录遇到的各种解析xml文件的方法，什么时候遇到什么时候往后边追加。</p>
+</blockquote>
+<h2 id="Pull方法解析"><a href="#Pull方法解析" class="headerlink" title="Pull方法解析"></a>Pull方法解析</h2><hr>
+<p>对于一个String格式的xml数据，其Pull方法解析如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">parseXMLWithPull</span><span class="params">(String data)</span></span>&#123;</div><div class="line">	<span class="keyword">try</span>&#123;</div><div class="line">		XmlPullParserFactory factory=XmlPullParseFactory.newInstance();</div><div class="line">		XmlPullParser xmlPull=factory.newPullPaeser();</div><div class="line">		xmlPull.setInput(<span class="keyword">new</span> StringReader(data));</div><div class="line">		<span class="keyword">int</span> eventType=xmlPull.getEventType();</div><div class="line">		String id=<span class="string">""</span>;</div><div class="line">		String name=<span class="string">""</span>;</div><div class="line">		String version=<span class="string">""</span>;</div><div class="line">		<span class="keyword">while</span>(eventType!=XmlPullParser.END_DOCUMENT)&#123;</div><div class="line">				String nodeName=xmlPull.getName();</div><div class="line">				<span class="keyword">switch</span>(eventType)&#123;</div><div class="line">					<span class="keyword">case</span> XmlPullParser.START_TAG:&#123;</div><div class="line">						<span class="keyword">if</span>(<span class="string">"id"</span>.equals(nodeName))&#123;<span class="comment">//id为某一节点的名字，如&lt;id&gt;asd&lt;/id&gt;</span></div><div class="line">							id=xmlPull.nextText();</div><div class="line">						&#125;<span class="comment">//开始某一个节点的解析</span></div><div class="line">						<span class="keyword">break</span>;</div><div class="line">					&#125;</div><div class="line">					<span class="keyword">case</span> XmlPullParser.END_TAG&#123;</div><div class="line">						<span class="comment">//结束某一个节点</span></div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">				eventType=xmlPullParser.next();</div><div class="line">		&#125;</div><div class="line">	&#125;<span class="keyword">catch</span>(Exception e)&#123;</div><div class="line">		e.printStackTrace();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
-            
-            <div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2017">
-                    <span class="tag-text">2017</span>
-                </span>
-                <ul>
                 
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    05-19
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2017/05/19/xml/" style="color: #0085a1">
-                        <span>
-                            解析xml文件
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    05-18
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2017/05/18/new/" style="color: #0085a1">
-                        <span>
-                            琐碎的小知识
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    05-18
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2017/05/18/hello-world/" style="color: #0085a1">
-                        <span>
-                            Hello World
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/05/18/new/" data-toggle="tooltip" data-placement="top" title="琐碎的小知识">Next Post &rarr;</a>
+                        </li>
+                    
                 </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
             </div>
             
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Pull方法解析"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Pull方法解析</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
 
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#xml解析" title="xml解析">xml解析</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
         </div>
     </div>
-</div>
+</article>
 
-                <!-- 如果开启评论功能 -->
-                
-            </div>
 
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
 
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-        
-            
-        
-    </div>
-</section>
 
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">ABOUT ME</a></h5>
-    <div class="short-about">
 
-        
-            <img id = "avatar_pic" src="/img/ironman-draw.png" />
-        
 
-        
-            <p>Hi, I&#39;m iueKang</p>
-        
 
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-            
-
-            
-
-            
-            
-            
-            
-        </ul>
-    </div>
-</section>
-        <hr>
-    
-        
-  <h5>RECENT POSTS</h3>
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/2017/05/19/xml/">解析xml文件</a>
-        </li>
-      
-        <li>
-          <a href="/2017/05/18/new/">琐碎的小知识</a>
-        </li>
-      
-        <li>
-          <a href="/2017/05/18/hello-world/">Hello World</a>
-        </li>
-      
-    </ul>
-  </div>
-
-        <hr>
-    
-</div>
-
-        
-    </div>
-</div>
 
 
     <!-- Footer -->
