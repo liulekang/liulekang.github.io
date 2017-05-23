@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          从学校网站抓取课程表 - iueKang的博客
+        
+    </title>
+
+    <link rel="canonical" href="https://github.com/liulekang/liulekang.github.io.git/2017/05/23/internet/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('null')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/BeanTechSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#抓取网页" title="抓取网页">抓取网页</a>
+                            
+                              <a class="tag" href="/tags/#okhttp" title="okhttp">okhttp</a>
+                            
+                              <a class="tag" href="/tags/#html解析" title="html解析">html解析</a>
+                            
+                        </div>
+                        <h1>从学校网站抓取课程表</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by iueKang on
+                            2017-05-23
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">iueKang的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">ABOUT</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">ARCHIVE</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">TAGS</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<p>折腾了几天总算从学校网站上把课程表抓取下来了，在这记录一下过程中遇到的各种问题</p>
+</blockquote>
+<h2 id="OkHttp的一些问题"><a href="#OkHttp的一些问题" class="headerlink" title="OkHttp的一些问题"></a>OkHttp的一些问题</h2><hr>
+<p>　　在一开始就遇到了问题，直接请求学校网站时总是获取不到内容，后来才发现是学校网站证书的问题，以下方法可以简单的让<code>okhttp</code>信任所有证书，也可以设置为信任某一证书，不过过程更复杂一些。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> OkHttpClient <span class="title">setupForClient</span><span class="params">()</span></span>&#123;</div><div class="line">        OkHttpClient c=<span class="keyword">new</span> OkHttpClient();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            SSLContext sc = SSLContext.getInstance(<span class="string">"SSL"</span>);</div><div class="line">            sc.init(<span class="keyword">null</span>, <span class="keyword">new</span> TrustManager[]&#123;<span class="keyword">new</span> X509TrustManager() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">super</span>.clone();</div><div class="line">                &#125;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkClientTrusted</span><span class="params">(X509Certificate[] chain, String authType)</span></span></div><div class="line">                        <span class="keyword">throws</span> CertificateException &#123;</div><div class="line">                &#125;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">checkServerTrusted</span><span class="params">(X509Certificate[] chain, String authType)</span></span></div><div class="line">                        <span class="keyword">throws</span> CertificateException &#123;</div><div class="line">                &#125;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="keyword">public</span> X509Certificate[] getAcceptedIssuers() &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">new</span> X509Certificate[<span class="number">0</span>];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            &#125;, <span class="keyword">new</span> SecureRandom());</div><div class="line">            SSLSocketFactory s = sc.getSocketFactory();</div><div class="line">            c = c.newBuilder()</div><div class="line">                    .cookieJar(<span class="keyword">new</span> LocalCookieJar())</div><div class="line">                    .sslSocketFactory(s).hostnameVerifier(<span class="keyword">new</span> HostnameVerifier() &#123;</div><div class="line">                <span class="meta">@Override</span></div><div class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">verify</span><span class="params">(String hostname, SSLSession session)</span> </span>&#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">            &#125;).build();</div><div class="line">            <span class="keyword">return</span> c;</div><div class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</div><div class="line">            Toast.makeText(<span class="keyword">this</span>,<span class="string">"internet error"</span>,Toast.LENGTH_SHORT).show();</div><div class="line">            Log.e(<span class="string">"ASd"</span>,<span class="string">"aaa"</span>,e);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>　　<code>okhttp</code>默认是自动加载重定向的网站的，而且可以设定自动记录<code>Cookie</code>。一开始一直在手动保存<code>Cookie</code>并添加，后来才发现还有这个功能<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> OkHttpClient client = <span class="keyword">new</span> OkHttpClient().newBuilder()</div><div class="line">                .followRedirects(<span class="keyword">false</span>)  <span class="comment">//禁制OkHttp的重定向操作，我们自己处理重定向</span></div><div class="line">                .followSslRedirects(<span class="keyword">false</span>)</div><div class="line">                .cookieJar(<span class="keyword">new</span> LocalCookieJar())   <span class="comment">//为OkHttp设置自动携带Cookie的功能</span></div><div class="line">                .build();</div><div class="line"></div><div class="line"><span class="comment">//CookieJar是用于保存Cookie的</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LocalCookieJar</span> <span class="keyword">implements</span> <span class="title">CookieJar</span></span>&#123;</div><div class="line">    List&lt;Cookie&gt; cookies;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;Cookie&gt; <span class="title">loadForRequest</span><span class="params">(HttpUrl arg0)</span> </span>&#123;</div><div class="line">         <span class="keyword">if</span> (cookies != <span class="keyword">null</span>)</div><div class="line">                <span class="keyword">return</span> cookies;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;Cookie&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveFromResponse</span><span class="params">(HttpUrl arg0, List&lt;Cookie&gt; cookies)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.cookies = cookies;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="模拟登陆过程"><a href="#模拟登陆过程" class="headerlink" title="模拟登陆过程"></a>模拟登陆过程</h2><hr>
+<p>　　用的抓包工具<code>HttpWatch</code>分析登陆过程中用到的参数，对于密码账号验证码等参数，都比较好搞定。<br>　　其中的一些变化的参数纠结了好久,最后才在登陆页面的<code>html</code>文件的<code>input</code>标签下找到的，利用<code>Jsoup</code>可以从中解析出值。</p>
+<p>　　登录请求的<code>url</code>中跟着一个<code>jsessionID</code>值也是在<code>html</code>文件的一个标签下的<code>action</code>属性中找到<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">getIt</span><span class="params">(String response)</span></span>&#123;<span class="comment">//这是程序中的代码，懒得再写直接贴出来</span></div><div class="line">       Document doc= Jsoup.parse(response);<span class="comment">//有各种方法加载String，file，url等</span></div><div class="line">       Elements node=doc.getElementsByAttributeValue(<span class="string">"class"</span>,<span class="string">"btn"</span>);<span class="comment">//获取与条件相对应的部分</span></div><div class="line">       Log.e(<span class="string">"node size"</span>,node.size()+<span class="string">""</span>);</div><div class="line">       String key=<span class="string">""</span>;</div><div class="line">       <span class="keyword">for</span>(Element c:node)&#123;</div><div class="line">           Elements a=c.children();</div><div class="line">           <span class="keyword">for</span>(Element q:a)&#123;</div><div class="line">               <span class="keyword">if</span>(q.attr(<span class="string">"name"</span>).equals(<span class="string">"lt"</span>))</div><div class="line">                   key=q.attr(<span class="string">"value"</span>);</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">if</span>(key.equals(<span class="string">""</span>))&#123;</div><div class="line">           <span class="keyword">return</span>;</div><div class="line">       &#125;</div><div class="line">       it=key;</div><div class="line">       Element aq=doc.getElementById(<span class="string">"fm1"</span>);</div><div class="line">       jsessionid=aq.attr(<span class="string">"action"</span>);</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>  在发送请求过程中应在请求中加入如下头部模拟浏览器，服务器才会返回数据。<br>　　<code>addHeader(&quot;User-Agent&quot;,&quot;Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; LCJB; rv:11.0) like Gecko&quot;)</code></p>
+<hr>
+<p> 　　最后登录了学校网站页面后，在请求课程表页面时，又遇到了很多问题，由于课表所在的位置与学校信息网站的位置没有在同一个网站上，其中会偶远程调用过程，在请求课表时会先发送一个<code>post</code>请求，其中的部分数据解析出来后，有一个<code>scrptsessionId</code>的参数一直找不到，后来就硬着头皮去看其中的脚本代码，终于在一个<code>.js</code>的脚本文件中找到，不过在发送请求后，服务器返回显示远程调用有一个参数不对。又陷入了长时间的纠结。<br> 　　最后发现如果跳过登录直接请求课表的那个网站会返回一个登录页面，按照正常的登录过程登陆后直接返回的就是课表的那个网站，总算是把课表抓下来了。<br> 　　虽然按照正常的流程没能成功，但在过程中对浏览器的工作过程以及脚本程序有了一定的理解。对于<code>html</code>中的脚本程序也多了一些了解．</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/05/19/xml/" data-toggle="tooltip" data-placement="top" title="解析xml文件">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#OkHttp的一些问题"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">OkHttp的一些问题</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#模拟登陆过程"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">模拟登陆过程</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#抓取网页" title="抓取网页">抓取网页</a>
+                        
+                          <a class="tag" href="/tags/#okhttp" title="okhttp">okhttp</a>
+                        
+                          <a class="tag" href="/tags/#html解析" title="html解析">html解析</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; iueKang 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://github.com/liulekang/liulekang.github.io.git/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'iuekang.pw';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="https://github.com/liulekang/liulekang.github.io.git/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
