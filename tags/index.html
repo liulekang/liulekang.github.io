@@ -143,14 +143,14 @@
 
                         
                         <li>
-                            <a href="/archive/">ARCHIVE</a>
+                            <a href="/tags/">TAGS</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">TAGS</a>
+                            <a href="/archive/">ARCHIVE</a>
                         </li>
                         
                     
@@ -200,6 +200,8 @@
             <!-- 标签云 -->
             <div id='tag_cloud' class="tags">
                 
+                    <a href="#小知识" title="小知识" rel="1">小知识</a>
+                
                     <a href="#xml解析" title="xml解析" rel="1">xml解析</a>
                 
                     <a href="#抓取网页" title="抓取网页" rel="1">抓取网页</a>
@@ -208,12 +210,32 @@
                 
                     <a href="#html解析" title="html解析" rel="1">html解析</a>
                 
-                    <a href="#小知识" title="小知识" rel="1">小知识</a>
-                
             </div>
 
             <!-- 标签列表 -->
 
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="小知识">
+                    <span class="tag-text">小知识</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2017/05/18/new/">
+                        <h2 class="post-title">
+                            琐碎的小知识
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
             
             <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="xml解析">
@@ -294,28 +316,6 @@
                      <a href="/2017/05/23/internet/">
                         <h2 class="post-title">
                             从学校网站抓取课程表
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="小知识">
-                    <span class="tag-text">小知识</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2017/05/18/new/">
-                        <h2 class="post-title">
-                            琐碎的小知识
                         </h2>
                         
                     </a>
