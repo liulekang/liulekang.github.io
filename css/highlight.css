@@ -2,14 +2,15 @@
 .post-container pre,
 .post-container .highlight {
   overflow: auto;
-  margin: 0px 0;
+  margin: 20px 0;
   padding: 0px;
   font-size: 13px;
   color: #4d4d4c;
   background: #f7f7f7;
   line-height: $line-height-code-block;
+  border: 2px solid #ccc;
   border-radius: 10px;
-  border: 2px solid #bbb;
+  radius: 10px;
 }
 /*pre, code { 
   font-family: $code-font-family;
@@ -20,7 +21,7 @@
   word-break: break-all;
   color: $code-foreground;
   background: $code-background;
-  border-radius: $my-border;
+  border-radius: $code-border-radius;
   font-size $code-font-size;
 }*/
 .post-container pre code {
