@@ -1,4 +1,5 @@
 
+
 var gray="#EEEEEE";
 var red="#FF0000";
 var green="#00FF00";
@@ -86,25 +87,35 @@ window.onload=function(){
 	document.onkeydown=function(event){
             var e = event || window.event || arguments.callee.caller.arguments[0];
             if(e && e.keyCode==37){ // left
-                if(squ.content.length>0){
+                moves(0);
+            }
+            if(e && e.keyCode==39){ // right
+                 moves(1);
+            }            
+             
+        }; 
+}
+function moves(dir){
+	if(dir==0){
+		if(squ.content.length>0){
                 	if(canMove(squ,0)){
                 		for(var i=0;i<squ.content.length;i++){
 							squ.content[i].y--;
 					    }
                 	}
                 }
-            }
-            if(e && e.keyCode==39){ // right
-                 if(squ.content.length>0){
+	}else if(dir==1){
+		if(squ.content.length>0){
                 	if(canMove(squ,1)){
                 		for(var i=0;i<squ.content.length;i++){
 							squ.content[i].y++;
 					    }
                 	}
                 }
-            }            
-             
-        }; 
+	}
+}
+function move(as){
+	moves(as);
 }
 function draw(){
 	logic();
@@ -197,4 +208,7 @@ function getGrade(){
 			}
 		}
 	}
+}
+function qwe(){
+	alert("you click the button");
 }
