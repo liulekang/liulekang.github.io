@@ -87,7 +87,7 @@ window.onload=function(){
             var e = event || window.event || arguments.callee.caller.arguments[0];
             if(e && e.keyCode==37){ // left
                 if(squ.content.length>0){
-                	if(canMove(squ)){
+                	if(canMove(squ,0)){
                 		for(var i=0;i<squ.content.length;i++){
 							squ.content[i].y--;
 					    }
@@ -96,7 +96,7 @@ window.onload=function(){
             }
             if(e && e.keyCode==39){ // right
                  if(squ.content.length>0){
-                	if(canMove(squ)){
+                	if(canMove(squ,1)){
                 		for(var i=0;i<squ.content.length;i++){
 							squ.content[i].y++;
 					    }
@@ -158,12 +158,26 @@ function canDown(squ){
 	}
 	return true;
 } 
-function canMove(squ){
-	for(var i=0;i<squ.content.length;i++){
-		if(squ.content[i].y-1<0||squ.content[i].y+1>5)
+function canMove(squ,code){
+	switch(code){
+		case 0:
+			for(var i=0;i<squ.content.length;i++){
+		if(squ.content[i].y-1<0)
 			return false;
 		else
 			continue;
+	}
+		break;
+
+		case 1:
+			for(var i=0;i<squ.content.length;i++){
+		if(squ.content[i].y+1>5)
+			return false;
+		else
+			continue;
+	}
+
+		break;
 	}
 	return true;
 }
