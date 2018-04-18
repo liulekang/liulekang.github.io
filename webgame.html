@@ -26,6 +26,21 @@
 		height:50px;
 		border:1px solid gray;
 	}
+	div.button{
+		margin: 15px;
+		border-radius: 15px
+		width:80px;
+		height:50px;
+		text-align: center;
+		vertical-align: center;
+		font-size: 30px;
+		background-color: #990099;
+	}
+	div#act{
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+	}
 	</style>
 </head>
 <body>
@@ -112,6 +127,10 @@
 					<td></td>
 				</tr>
 			</table>
+	</div>
+	<div id="act">
+		<div class="button" id="left" onClick="move(0)"> left </div>
+		<div class="button" id="right" onClick="move(1)">right</div>
 	</div>
 </body>
 </html>
