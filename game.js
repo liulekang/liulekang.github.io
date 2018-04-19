@@ -1,5 +1,4 @@
 
-
 var gray="#EEEEEE";
 var red="#FF0000";
 var green="#00FF00";
@@ -102,6 +101,7 @@ function moves(dir){
                 		for(var i=0;i<squ.content.length;i++){
 							squ.content[i].y--;
 					    }
+					    paint();
                 	}
                 }
 	}else if(dir==1){
@@ -110,6 +110,7 @@ function moves(dir){
                 		for(var i=0;i<squ.content.length;i++){
 							squ.content[i].y++;
 					    }
+					    paint();
                 	}
                 }
 	}
@@ -119,6 +120,10 @@ function move(as){
 }
 function draw(){
 	logic();
+	paint();
+
+}
+function paint(){
 	for(var i=0;i<board.length;i++){
 		board[i].style.backgroundColor=gray;
 	}
@@ -137,7 +142,6 @@ function draw(){
 		if(x>=0&&x<=9)
 			board[x*6+y].style.backgroundColor=color;
 	}
-
 }
 function logic(){
 	if(canDown(squ)){
