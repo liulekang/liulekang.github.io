@@ -1,4 +1,5 @@
 
+
 var gray="#EEEEEE";
 var red="#FF0000";
 var green="#00FF00";
@@ -7,6 +8,7 @@ var board=[];
 var collec=[];
 var squ;
 var timer; 
+var qqq=0;
 var count=[0,0,0,0,0,0,0,0,0,0];
 function getColor(){
 	var m=Math.floor(Math.random()*100)%3;
@@ -150,8 +152,11 @@ function logic(){
 		}
 	}else{
 		for(var i=0;i<squ.content.length;i++){
-			if(squ.content[i].x<0)
+			if(squ.content[i].x<0){
 				clearInterval(timer);
+				alert("you get "+qqq+" 分!!!")
+				break;
+			}
 		}
 		for(var i=0;i<squ.content.length;i++){
 			collec.push(squ.content[i]);
@@ -210,9 +215,7 @@ function getGrade(){
 					collec[j].x++;
 				}
 			}
+			qqq++;
 		}
 	}
-}
-function qwe(){
-	alert("you click the button");
 }
