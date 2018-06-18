@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>杨宝林傻逼</title>
+<style>
+    body{
+        overflow: hidden;
+        margin: 0;
+    }    
+</style>
+</head>
+<body>
+
+<canvas id="q"></canvas>
+<script>
+var a=0;
+var s = window.screen;
+var width = q.width = s.width;
+var height = q.height = s.height;
+var letters = Array(256).join(1).split('');
+var words=['杨','宝','林','傻','逼'];
+var draw = function () {
+  q.getContext('2d').fillStyle='rgba(0,0,0,0.1)';
+  q.getContext('2d').fillRect(0,0,width,height);
+  q.getContext('2d').fillStyle='#0F0';
+  q.getContext('2d').font=' 30px Arial';
+  var mm=getInt();
+  letters.map(function(y_pos, index){
+    text = words[mm];
+//    text = String.fromCharCode(3e4+Math.random()*33);//显示中文
+    x_pos = index * 40;
+    q.getContext('2d').fillText(text, x_pos, y_pos);
+    letters[index] = (y_pos > 758 + Math.random() * 10000) ? 0 : y_pos + 40;
+    q.getContext('2d').fillStyle="#00FF00";
+  });
+};
+function getInt(){	
+	if(a>4){
+		a=0;
+	}
+	return a++;
+}
+setInterval(draw, 100);
+</script>
+</body>
+</html>
